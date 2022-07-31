@@ -1,0 +1,18 @@
+{
+    "users": [
+        {
+            "id": "4630f080-8bef-4c6d-8875-c67c31df09b0",
+            "name": "John Doe",
+            "email": "johndoe@email.com",
+            "password": "secret"
+        }
+    ],
+    "tasks": [
+        {
+            "id": "2bd81bff-a7ce-4bdc-9508-465e403700aa",
+            "users_id": "4630f080-8bef-4c6d-8875-c67c31df09b0",
+            "description": "Sample Task",
+            "created_at": "01/01/2000 00:00:00"
+        }
+    ]
+}
