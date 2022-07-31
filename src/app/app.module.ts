@@ -11,6 +11,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NotAuthenticatedComponent } from './layouts/not-authenticated/not-authenticated.component';
 import { AuthenticatedComponent } from './layouts/authenticated/authenticated.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AuthenticatedComponent } from './layouts/authenticated/authenticated.co
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     NgbModule
   ],
