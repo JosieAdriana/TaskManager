@@ -9,6 +9,8 @@ import { TaskComponent } from './pages/task/task.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NotAuthenticatedComponent } from './layouts/not-authenticated/not-authenticated.component';
+import { AuthenticatedComponent } from './layouts/authenticated/authenticated.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RegisterComponent,
     TaskComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    NotAuthenticatedComponent,
+    AuthenticatedComponent
   ],
   imports: [
     BrowserModule,
