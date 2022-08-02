@@ -12,7 +12,9 @@ export class LoginActivate implements CanActivate {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<boolean> | Promise<boolean> | boolean {
-        if (false) {
+        const token = localStorage.getItem('token') || undefined;
+
+        if (!token) {
             this.router.navigate(['login']);
         }
 
