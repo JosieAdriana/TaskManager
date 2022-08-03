@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/User';
+import { catchError, throwError } from 'rxjs';
 
 const BASE_URL = "http://localhost:3000";
 @Component({
@@ -12,6 +13,7 @@ const BASE_URL = "http://localhost:3000";
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  public errorMessage: string = '';
 
   constructor(
     private http: HttpClient,
@@ -30,6 +32,13 @@ export class LoginComponent implements OnInit {
       email: this.form.get('email')?.value,
       password: this.form.get('password')?.value
     })
+    .pipe(
+      catchError((err: HttpErrorResponse) => {
+        // alert(err.error);
+        this.errorMessage = err.error;
+        return throwError(() => new Error(err.message)); //Rethrow it back to component
+      })
+    )
     .subscribe(({accessToken, user}: { accessToken: string, user: User }) => {
       console.log(user);
       localStorage.setItem('token', accessToken);
