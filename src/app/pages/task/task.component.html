@@ -1,3 +1,21 @@
 <app-authenticated>
-    <p>task works!</p>
+    <ul>
+        <li *ngFor="let task of tasks">
+            {{ task.description }}
+            <button (click)="removeTask(task.id)">Remove</button>
+        </li>
+    </ul>
+
+    <form [formGroup]="form">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" formControlName="description"/>
+          <button (click)="addTask()">Add</button>
+
+        </div>
+    </form>
+
+
+
+
+
 </app-authenticated>
