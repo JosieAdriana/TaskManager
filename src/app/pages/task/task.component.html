@@ -1,21 +1,29 @@
 <app-authenticated>
-    <ul>
-        <li *ngFor="let task of tasks">
-            {{ task.description }}
-            <button (click)="removeTask(task.id)">Remove</button>
-        </li>
-    </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card border-0 shadow rounded-3 my-5">
+                    <div class="card-body p-4 p-sm-5">
+                        <h5 class="card-title text-center mb-5 fw-light fs-5">Task List</h5>
 
-    <form [formGroup]="form">
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" formControlName="description"/>
-          <button (click)="addTask()">Add</button>
-
+                        <form [formGroup]="form" (ngSubmit)="addTask()">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" formControlName="description" />
+                                <ul class="task-list">
+                                    <li *ngFor="let task of tasks" class="task-item">
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" (change)="updateTask($event, task.id)" [checked]="task.isCompleted" />
+                                            <span [ngClass]="{'line-through': task.isCompleted}">{{ task.description }}</span>
+                                        </label>
+                                        <a type="click" (click)="$event.preventDefault(); removeTask(task.id)" class="btn btn-danger">Remove</a>
+                                    </li>
+                                </ul>
+                                <button type="submit" class="btn btn-success">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    </form>
-
-
-
-
-
+    </div>
 </app-authenticated>
