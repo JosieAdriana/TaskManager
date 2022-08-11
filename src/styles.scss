@@ -11,20 +11,22 @@
 body {
   height: 100vh;
   width: 100vw;
+  overflow-x: hidden;
 }
 
 header,
 footer {
   margin: 0;
   padding: 0;
-  height: 6vh;
+  min-height: 50px;
   width: 100%;
+  left: 100%;
 }
 
 body app-authenticated main {
-  min-height: calc(100% - 12vh);
+  min-height: calc(100% - 100px);
 }
 
 body app-not-authenticated main {
-  min-height: calc(100% - 6vh);
+  min-height: calc(100% - 50px);
 }
