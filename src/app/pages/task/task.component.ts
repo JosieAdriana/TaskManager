@@ -1,21 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-
-const BASE_URL = "http://localhost:3000";
-
-interface Task {
-  id: number;
-  description: string;
-  isCompleted: boolean;
-}
+import { User } from 'src/app/interfaces/User';
+import { Task } from 'src/app/interfaces/Task';
 @Component({
   selector: 'task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
-  form: FormGroup
+  private baseUrl: string =  "http://localhost:3000";
+  public form: FormGroup
   public task = '';
   public tasks: Task[] = [];
 
@@ -24,30 +19,48 @@ export class TaskComponent implements OnInit {
   ) {
     this.form = new FormGroup({
       description: new FormControl(),
-      // isCompleted: new FormControl(),
+      isCompleted: new FormControl(),
     })
   }
 
   ngOnInit(): void {
-    this.http.get<any>(`${BASE_URL}/tasks`).subscribe(tasks => {
-      this.tasks = tasks
+    this.getTasks();
+  }
+
+  getTasks(): void {
+    const user: User = JSON.parse(localStorage!['user']);
+
+    this.http.get<Task[]>(`${this.baseUrl}/tasks`).subscribe(tasks => {
+      this.tasks = tasks.filter((task: Task) => task.user_id === user.id)
     });
   }
 
-  removeTask(id: number) { 
-    this.http.delete<any>(`${BASE_URL}/tasks/${id}`).subscribe(() => {
+  removeTask(id: number): void {
+    this.http.delete<Task>(`${this.baseUrl}/tasks/${id}`).subscribe(() => {
       const taskIndex = this.tasks.findIndex(task => task.id === id)
       this.tasks.splice(taskIndex, 1)
     });
   }
 
-  addTask() {
-    this.http.post<any>(`${BASE_URL}/tasks`, {
-      description: this.form.get('description')?.value,
-      isCompleted: false
+  updateTask(event: any, id: number): void {
+    this.http.patch<Task>(`${this.baseUrl}/tasks/${id}`, {
+      isCompleted: event.target.checked
+    }).subscribe(() => {
+      const taskIndex = this.tasks.findIndex(task => task.id === id)
+      this.tasks[taskIndex].isCompleted = event.target.checked;
+    });
+  }
+  
+  addTask(): void {
+    const user: User = JSON.parse(localStorage!['user']);
 
-    }).subscribe(task => {
+    this.http.post<Task>(`${this.baseUrl}/tasks`, {
+      description: this.form.get('description')?.value,
+      user_id: user.id,
+      isCompleted: false
+    }).subscribe((task) => {
       this.tasks.push(task)
+      this.form.get('description')?.setValue('')
     });
   }
 }
