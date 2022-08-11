@@ -1,14 +1,12 @@
 <header class="d-flex flex-wrap justify-content-center align-items-center border-bottom">
-  <span href="/" class="d-flex align-items-center justify-content-center mx-4 me-md-auto text-dark text-decoration-none">
-    <span class="fs-4 text-dark">Task Manager</span>
-  </span>
+  <a href="tasks" class="d-flex align-items-center justify-content-center mx-4 me-md-auto text-dark text-decoration-none">
+    <span class="fs-4 text-dark">Task Manager <strong>{{ user!.first_name }}</strong></span>
+  </a>
 
   <div class="d-none d-md-block">
     <ul class="nav nav-pills">
-      <li class="nav-item"><a href="#" class="nav-link text-decoration-none text-dark">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link text-decoration-none text-dark">Features</a></li>
-      <li class="nav-item"><a href="#" class="nav-link text-decoration-none text-dark">About</a></li>
-      <li class="nav-item"><a href="#" class="nav-link text-decoration-none text-dark">Log out</a></li>
+      <li class="nav-item"><a href="tasks" class="nav-link text-decoration-none text-dark">Home</a></li>
+      <li class="nav-item"><span (click)="logout()" class="nav-link text-decoration-none text-dark" role="button">Log out</span></li>
     </ul>
   </div>
 </header>
