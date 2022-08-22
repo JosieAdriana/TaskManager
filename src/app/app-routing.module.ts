@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './features/pages/components/login/login.component';
+import { RegisterComponent } from './features/pages/components/register/register.component';
+import { TaskComponent } from './features/pages/components/task/task.component';
 import { LoginActivate } from './guards/LoginActivate';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { TaskComponent } from './pages/task/task.component';
+
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
