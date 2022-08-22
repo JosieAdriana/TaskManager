@@ -9,16 +9,18 @@
                         <form [formGroup]="form" (ngSubmit)="addTask()">
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" formControlName="description" />
+                              <br>
+                                <button type="submit" class="btn btn-success">Add</button>
                                 <ul class="task-list">
                                     <li *ngFor="let task of tasks" class="task-item">
-                                        <label class="form-check">
+                                        <label class="form-check" >
                                             <input class="form-check-input" type="checkbox" (change)="updateTask($event, task.id)" [checked]="task.isCompleted" />
-                                            <span [ngClass]="{'line-through': task.isCompleted}">{{ task.description }}</span>
+                                            <span [ngClass]="{'line-through': task.isCompleted}">{{ task.description | uppercase }}</span>
                                         </label>
-                                        <a type="click" (click)="$event.preventDefault(); removeTask(task.id)" class="btn btn-danger">Remove</a>
+                                        <a type="click" (click)="$event.preventDefault(); removeTask(task.id)" class="btn btn-danger" >Remove</a>
                                     </li>
                                 </ul>
-                                <button type="submit" class="btn btn-success">Add</button>
+                               
                             </div>
                         </form>
                     </div>
