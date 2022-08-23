@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NotAuthenticatedComponent } from './components/not-authenticated/not-authenticated.component';
 import { AuthenticatedComponent } from './components/authenticated/authenticated.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 
@@ -12,6 +13,7 @@ import { AuthenticatedComponent } from './components/authenticated/authenticated
   ],
   imports: [
     CommonModule,
+    SharedModule
   ],
   exports: [
     NotAuthenticatedComponent,
