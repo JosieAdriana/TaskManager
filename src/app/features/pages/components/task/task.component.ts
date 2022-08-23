@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/User';
 import { Task } from 'src/app/interfaces/Task'; 
 
@@ -11,20 +11,23 @@ import { Task } from 'src/app/interfaces/Task';
 })
 export class TaskComponent implements OnInit {
   private baseUrl: string =  "http://localhost:3000";
-  public form: FormGroup
+  public form: FormGroup = new FormGroup({});
+  public submitted: boolean = false;
   public task = '';
   public tasks: Task[] = [];
 
   constructor(
     private http: HttpClient,
+    private formBuilder: FormBuilder
   ) {
-    this.form = new FormGroup({
-      description: new FormControl(),
-      isCompleted: new FormControl(),
-    })
+    
   }
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      description: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]),
+      isCompleted: new FormControl(),
+    })
     this.getTasks();
   }
 
@@ -51,8 +54,12 @@ export class TaskComponent implements OnInit {
       this.tasks[taskIndex].isCompleted = event.target.checked;
     });
   }
-  
+
   addTask(): void {
+    if (this.form.valid === false) {
+      alert('Task description must be between 3 and 200 characters.');
+      return;
+    }
     const user: User = JSON.parse(localStorage!['user']);
 
     this.http.post<Task>(`${this.baseUrl}/tasks`, {
