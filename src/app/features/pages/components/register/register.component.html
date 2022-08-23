@@ -1,89 +1,93 @@
-
-   <div class="container border p-3 d-flex flex-column align-items-center justify-content-center">
-      <div class="w-100 p-4">
-        <h5 class="card-title text-center fw-light fs-5">Sign Up</h5>
-      </div>
-  
-      <form [formGroup]="form">
-        <div class="form-group">
-          <label for="validationServer01" class="form-label">First name</label>
-          <input type="text" class="form-control" [ngClass]="{'is-valid': !!form.get('first_name')?.invalid === false && !!form.get('first_name')?.touched === true, 'is-invalid': !!form.get('first_name')?.invalid === true && !!form.get('first_name')?.touched === true}" formControlName="first_name" autocomplete="off"/>
-          <div class="valid-feedback" *ngIf="!!form.get('first_name')?.touched === true && !!form.get('first_name')?.invalid === false">
-            Looks good!
-          </div>
-          <div class="invalid-feedback" *ngIf="!!form.get('first_name')?.touched === true && !!form.get('first_name')?.invalid === true">
-            Please provide a valid first name.
-          </div>
-        </div>
-  
-        <div class="form-group">
-          <label for="validationServer01" class="form-label">Last name</label>
-          <input type="text" class="form-control" [ngClass]="{'is-valid': !!form.get('last_name')?.invalid === false && !!form.get('last_name')?.touched === true, 'is-invalid': !!form.get('last_name')?.invalid === true && !!form.get('last_name')?.touched === true}" formControlName="last_name"  autocomplete="off"/>
-          <div class="valid-feedback" *ngIf="!!form.get('last_name')?.touched === true && !!form.get('last_name')?.invalid === false">
-            Looks good!
-          </div>
-          <div class="invalid-feedback" *ngIf="!!form.get('last_name')?.touched === true && !!form.get('last_name')?.invalid === true">
-            Please provide a valid last name.
-          </div>
-        </div>
-  
-        <div class="form-group">
-          <label for="validationServer01" class="form-label">Email address</label>
-          <input type="text" class="form-control" [ngClass]="{'is-valid': !!form.get('email')?.invalid === false && !!form.get('email')?.touched === true, 'is-invalid': !!form.get('email')?.invalid === true && !!form.get('email')?.touched === true}" formControlName="email"  autocomplete="off"/>
-          <div class="valid-feedback" *ngIf="!!form.get('email')?.touched === true && !!form.get('email')?.invalid === false">
-            Looks good!
-          </div>
-          <div class="invalid-feedback" *ngIf="!!form.get('email')?.touched === true && !!form.get('email')?.invalid === true">
-            Please provide a valid email.
-          </div>
-          <small id="emailHelp" class="form-text"
-            >We'll never share your email with anyone else.
-          </small>
-        </div>
-  
-        <div class="form-group">
-          <label for="validationServer01" class="form-label">Password</label>
-          <input type="password" class="form-control" [ngClass]="{'is-valid': !!form.get('password')?.invalid === false && !!form.get('password')?.touched === true, 'is-invalid': !!form.get('password')?.invalid === true && !!form.get('password')?.touched === true}" formControlName="password"  autocomplete="off"/>
-          <div class="valid-feedback" *ngIf="!!form.get('password')?.touched === true && !!form.get('password')?.invalid === false">
-            Looks good!
-          </div>
-          <div class="invalid-feedback" *ngIf="!!form.get('password')?.touched === true && !!form.get('password')?.invalid === true">
-            Please provide a valid password.
-          </div>
-          <small id="passwordHelpBlock" class="form-text">
-            Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
-          </small>
-        </div>
-  
-        <div class="form-group">
-          <label for="validationServer01" class="form-label">Password</label>
-          <input type="password" class="form-control" [ngClass]="{'is-valid': !!form.get('password_confirmation')?.invalid === false && !!form.get('password_confirmation')?.touched === true, 'is-invalid': !!form.get('password_confirmation')?.invalid === true && !!form.get('password_confirmation')?.touched === true}" formControlName="password_confirmation"  autocomplete="off"/>
-          <div class="valid-feedback" *ngIf="!!form.get('password_confirmation')?.touched === true && !!form.get('password_confirmation')?.invalid === false">
-              Looks good!
-          </div>
-          <div class="invalid-feedback" *ngIf="!!form.get('password_confirmation')?.touched === true && !!form.get('password_confirmation')?.errors?.['match'] === true">
-              The passwords must match!
-          </div>
-          <div class="invalid-feedback" *ngIf="!!form.get('password_confirmation')?.touched === true && !!form.get('password_confirmation')?.invalid === true && !!form.get('password_confirmation')?.errors?.['match'] === false">
-              Please provide a valid password.
-          </div>
-          <small id="passwordHelpBlock" class="form-text">
-              Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
-          </small>
-        </div>
-  
-        <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-success mt-2" [disabled]="submitted || form.valid === false" (click)="submit()">Submit</button>
-  
-          <div class="alert alert-danger" role="alert" *ngIf="form.valid === false && form.pristine === false">
-            Please make sure all fields are filled in correctly.
-          </div>
-        </div>
-  
-        <div class="d-grid gap-2">
-          <a href="login" class="btn btn-secondary mt-2">Login</a>
-        </div>
-      </form>
-    </div>
+<app-not-authenticated>
+  <div class="container border mt-5 p-3 d-flex flex-column align-items-center justify-content-center">
+     <div class="w-100 p-4">
+       <h5 class="card-title text-center fw-light fs-5">Sign Up</h5>
+     </div>
+ 
+     <form [formGroup]="form">
+       <div class="form-group">
+         <label for="validationServer01" class="form-label">First name</label>
+         <input type="text" class="form-control" [ngClass]="{'is-valid': !!form.get('first_name')?.invalid === false && !!form.get('first_name')?.touched === true, 'is-invalid': !!form.get('first_name')?.invalid === true && !!form.get('first_name')?.touched === true}" formControlName="first_name" autocomplete="off"/>
+         <div class="valid-feedback" *ngIf="!!form.get('first_name')?.touched === true && !!form.get('first_name')?.invalid === false">
+           Looks good!
+         </div>
+         <div class="invalid-feedback" *ngIf="!!form.get('first_name')?.touched === true && !!form.get('first_name')?.invalid === true">
+           Please provide a valid first name.
+         </div>
+       </div>
+ 
+       <div class="form-group">
+         <label for="validationServer01" class="form-label">Last name</label>
+         <input type="text" class="form-control" [ngClass]="{'is-valid': !!form.get('last_name')?.invalid === false && !!form.get('last_name')?.touched === true, 'is-invalid': !!form.get('last_name')?.invalid === true && !!form.get('last_name')?.touched === true}" formControlName="last_name"  autocomplete="off"/>
+         <div class="valid-feedback" *ngIf="!!form.get('last_name')?.touched === true && !!form.get('last_name')?.invalid === false">
+           Looks good!
+         </div>
+         <div class="invalid-feedback" *ngIf="!!form.get('last_name')?.touched === true && !!form.get('last_name')?.invalid === true">
+           Please provide a valid last name.
+         </div>
+       </div>
+ 
+       <div class="form-group">
+         <label for="validationServer01" class="form-label">Email address</label>
+         <input type="text" class="form-control" [ngClass]="{'is-valid': !!form.get('email')?.invalid === false && !!form.get('email')?.touched === true, 'is-invalid': !!form.get('email')?.invalid === true && !!form.get('email')?.touched === true}" formControlName="email"  autocomplete="off"/>
+         <div class="valid-feedback" *ngIf="!!form.get('email')?.touched === true && !!form.get('email')?.invalid === false">
+           Looks good!
+         </div>
+         <div class="invalid-feedback" *ngIf="!!form.get('email')?.touched === true && !!form.get('email')?.invalid === true">
+           Please provide a valid email.
+         </div>
+         <small id="emailHelp" class="form-text"
+           >We'll never share your email with anyone else.
+         </small>
+       </div>
+ 
+       <div class="form-group">
+         <label for="validationServer01" class="form-label">Password</label>
+         <input type="password" class="form-control" [ngClass]="{'is-valid': !!form.get('password')?.invalid === false && !!form.get('password')?.touched === true, 'is-invalid': !!form.get('password')?.invalid === true && !!form.get('password')?.touched === true}" formControlName="password"  autocomplete="off"/>
+         <div class="valid-feedback" *ngIf="!!form.get('password')?.touched === true && !!form.get('password')?.invalid === false">
+           Looks good!
+         </div>
+         <div class="invalid-feedback" *ngIf="!!form.get('password')?.touched === true && !!form.get('password')?.invalid === true">
+           Please provide a valid password.
+         </div>
+         <small id="passwordHelpBlock" class="form-text">
+           Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+         </small>
+       </div>
+ 
+       <div class="form-group">
+         <label for="validationServer01" class="form-label">Password Confirmation</label>
+         <input type="password" class="form-control" [ngClass]="{'is-valid': !!form.get('password_confirmation')?.invalid === false && !!form.get('password_confirmation')?.touched === true, 'is-invalid': !!form.get('password_confirmation')?.invalid === true && !!form.get('password_confirmation')?.touched === true}" formControlName="password_confirmation"  autocomplete="off"/>
+         <div class="valid-feedback" *ngIf="!!form.get('password_confirmation')?.touched === true && !!form.get('password_confirmation')?.invalid === false">
+             Looks good!
+         </div>
+         <div class="invalid-feedback" *ngIf="!!form.get('password_confirmation')?.touched === true && !!form.get('password_confirmation')?.errors?.['match'] === true">
+             The passwords must match!
+         </div>
+         <div class="invalid-feedback" *ngIf="!!form.get('password_confirmation')?.touched === true && !!form.get('password_confirmation')?.invalid === true && !!form.get('password_confirmation')?.errors?.['match'] === false">
+             Please provide a valid password.
+         </div>
+         <small id="passwordHelpBlock" class="form-text">
+             Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+         </small>
+       </div>
+ 
+       <div class="d-grid gap-2">
+         <button type="submit" class="btn btn-success mt-2" [disabled]="submitted || form.valid === false" (click)="submit()">Register</button>
+ 
+         <div class="alert alert-danger" role="alert" *ngIf="form.valid === false && form.pristine === false">
+           Please make sure all fields are filled in correctly.
+         </div>
+       </div>
+ 
+       <div class="d-grid gap-2">
+        <p>
+          Already have an accounty?
+          <a href="login">Login</a>
+        </p>
+       </div>
+     </form>
+   </div>
+</app-not-authenticated>
 
 
